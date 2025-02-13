@@ -12,6 +12,7 @@ const fugaz= Fugaz_One({
 export default function Login() {
   const [email,setEmail]= useState('')
   const [password,setPassword]=useState('')
+  const [error,setError]=useState(null)
   const[isRegister,setIsRegister]=useState(false)
   const [authenticating,setAuthenticating]=useState(false)
   const { signup,login }= useAuth()
@@ -25,11 +26,14 @@ export default function Login() {
     if (isRegister){
       console.log('Signing up a new user')
       await signup(email,password)
+      setError(null)
     }else{
       console.log("Logging in existing user")
       await login(email,password)
+      setError(null)
     }}catch(err){
       console.log(err.message)
+      setError(err.message)
     }finally{
       setAuthenticating(false)
     }
@@ -38,6 +42,7 @@ export default function Login() {
 
   return (
     <div className='flex flex-col flex-1 items-center justify-center gap-4 '>
+        {error && (<p>❌{error.replace('Firebase:','')}</p>)}
         <h3 className={' text-4xl sm:text-5xl md:text-6xl ' + fugaz.className }>{isRegister ? 'Register' : 'Log In'}</h3>
         <p>You&apos;re one step away!</p>
         <input value={email} onChange={(e)=>{
