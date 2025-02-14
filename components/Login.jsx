@@ -18,9 +18,13 @@ export default function Login() {
   const { signup,login }= useAuth()
 
   async function handleSubmit(){
-    if(!email || !password || password.length<6){
-      return
-    }
+    
+      if(!email || !password || password.length<6){
+        console.log(" password length should be greater than 6")
+        setError("password length should be greater than 6")
+        return
+      }
+
     setAuthenticating(true)
     try{
     if (isRegister){
@@ -56,7 +60,7 @@ export default function Login() {
         </div>
         <p className='text-center'>{(isRegister? 'Already have an account?':"Don't have an account?")}<button onClick={()=>{
           setIsRegister(!isRegister)
-        }} className='text-indigo-600 px-2'>{(isRegister?'Sign Up':'Sign In')}</button></p>
+        }} className='text-indigo-600 px-2'>{(isRegister?'Sign In':'Sign Up')}</button></p>
         
     </div>
   )
