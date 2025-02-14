@@ -13,7 +13,7 @@ export default function Login() {
   const [email,setEmail]= useState('')
   const [password,setPassword]=useState('')
   const [error,setError]=useState(null)
-  const[isRegister,setIsRegister]=useState(false)
+  const[isRegister,setIsRegister]=useState(true)
   const [authenticating,setAuthenticating]=useState(false)
   const { signup,login }= useAuth()
 
@@ -46,7 +46,7 @@ export default function Login() {
 
   return (
     <div className='flex flex-col flex-1 items-center justify-center gap-4 '>
-        {error && (<p>❌{error.replace('Firebase:','')}</p>)}
+        
         <h3 className={' text-4xl sm:text-5xl md:text-6xl ' + fugaz.className }>{isRegister ? 'Register' : 'Log In'}</h3>
         <p>You&apos;re one step away!</p>
         <input value={email} onChange={(e)=>{
@@ -55,6 +55,7 @@ export default function Login() {
         <input value={password} onChange={(e)=>{
           setPassword(e.target.value)
         }} className='max-w-[400px] w-full mx-auto px-3 py-2 sm:py-3 rounded-full border  border-solid outline-none border-indigo-400 duration-200 hover:border-indigo-600 focus:border-indigo-600 transition-all' placeholder='Password' type='password'/>
+        {error && (<p>❌{error.replace('Firebase:','')}</p>)}
         <div className='max-w-[400px] w-full mx-auto'>
           <Button clickHandler={handleSubmit} text={authenticating?'Submitting':'Submit'} full />
         </div>
