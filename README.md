@@ -23,5 +23,7 @@ You can start editing the page by modifying `app/page.js`. The page auto-updates
 
 ## To Run it locally using Docker-Compose
 1. rename .env.example to .env and add required values
+
 2. use  ```docker compose up``` in terminal to get the project up and running with a single command
+
 3. To make changes and to get hot reloading to work create new instance and type ```docker compose watch```
